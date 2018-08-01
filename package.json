@@ -1,0 +1,48 @@
+{
+  "name": "wiredep-away",
+  "version": "0.1.2",
+  "main": "./wiredep-away.js",
+  "description": "Wire Yarn dependencies to your source code.",
+  "contributors": [
+    {
+      "name": "Stephen Sawchuk",
+      "email": "sawchuk@gmail.com"
+    }
+  ],
+  "repository": "johnnyasantoss/wiredep-away",
+  "author": {
+    "email": "johnnyadsantos@gmail.com",
+    "name": "Johnny Santos",
+    "url": "https://johnnyasantos.com"
+  },
+  "keywords": [
+    "bower",
+    "bower-away",
+    "yarn",
+    "package",
+    "management",
+    "inject",
+    "script",
+    "dependencies"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "NODE_ENV=test mocha -R spec",
+    "coverage": "istanbul cover _mocha -- -R spec"
+  },
+  "dependencies": {
+    "bower-config": "^1.3.0",
+    "glob": "^7.0.3",
+    "lodash": "^4.6.1",
+    "propprop": "^0.3.0",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "fs-extra": "^0.26.7",
+    "istanbul": "^0.4.2",
+    "jshint": "*",
+    "mocha": "*",
+    "uncache": "^0.1.0"
+  }
+}
