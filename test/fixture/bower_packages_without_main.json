@@ -1,5 +1,5 @@
 {
-  "name": "wiredep-test",
+  "name": "mm-wiredep-test",
   "version": "0.0.0",
   "dependencies": {
     "fake-package-without-main": "1.0.0",
