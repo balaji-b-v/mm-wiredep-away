@@ -1,20 +1,10 @@
 {
-  "name": "wiredep-away",
+  "name": "mm-wiredep-away",
   "version": "0.0.1",
-  "main": "./wiredep-away.js",
-  "description": "Wire Yarn dependencies to your source code.",
-  "contributors": [
-    {
-      "name": "Stephen Sawchuk",
-      "email": "sawchuk@gmail.com"
-    }
-  ],
-  "repository": "johnnyasantoss/wiredep-away",
-  "author": {
-    "email": "johnnyadsantos@gmail.com",
-    "name": "Johnny Santos",
-    "url": "https://johnnyasantos.com"
-  },
+  "main": "./mm-wiredep-away.js",
+  "description": "Wire Yarn dependencies to your source code based on Stephen Sawchuk's wiredep-away library.",
+  "repository": "https://github.com/balaji-b-v/mm-wiredep-away",
+  "author": "Balaji Venkatesh <balaji_b_v@rediffmail.com>",
   "keywords": [
     "bower",
     "bower-away",
@@ -44,5 +34,6 @@
     "jshint": "*",
     "mocha": "*",
     "uncache": "^0.1.0"
-  }
+  },
+  "private": false
 }
