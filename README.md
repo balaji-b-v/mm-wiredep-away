@@ -14,7 +14,7 @@ Install the module with [**Yarn**][yarn]:
 ```bash
 yarn add mm-wiredep-away
 # If you still having the other one
-yarn remove rm-wiredep-away
+yarn remove mm-wiredep-away
 ```
 
 Replace every `wiredep` import with `mm-wiredep-away`.
