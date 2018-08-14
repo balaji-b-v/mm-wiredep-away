@@ -27,20 +27,19 @@ function wiredep(opts) {
   config = module.exports.config = helpers.createStore();
 
   config.set
-    ('on-error', opts.onError || function (err) { throw new Error(err); })
-    ('on-file-updated', opts.onFileUpdated || function () { })
-    ('on-main-not-found', opts.onMainNotFound || function () { })
-    ('on-path-injected', opts.onPathInjected || function () { });
+    ('on-error', opts.onError || function(err) { throw new Error(err); })
+    ('on-file-updated', opts.onFileUpdated || function() {})
+    ('on-main-not-found', opts.onMainNotFound || function() {})
+    ('on-path-injected', opts.onPathInjected || function() {});
 
   config.set
-    ('bower.json', opts.bowerJson || getBowerConfig(cwd))
+    ('bower.json', opts.bowerJson || JSON.parse($.fs.readFileSync($.path.join(cwd, './bower.json'))))
     ('bower-directory', opts.directory || findBowerDirectory(cwd))
-    ('nodemodules-directory', opts.nodeModules || $.path.resolve(cwd, './node_modules'))
     ('cwd', cwd)
     ('dependencies', opts.dependencies === false ? false : true)
     ('detectable-file-types', [])
     ('dev-dependencies', opts.devDependencies)
-    ('exclude', Array.isArray(opts.exclude) ? opts.exclude : [opts.exclude])
+    ('exclude', Array.isArray(opts.exclude) ? opts.exclude : [ opts.exclude ])
     ('file-types', mergeFileTypesWithDefaults(opts.fileTypes))
     ('global-dependencies', helpers.createStore())
     ('ignore-path', opts.ignorePath)
@@ -82,37 +81,6 @@ function wiredep(opts) {
       }, { packages: config.get('global-dependencies').get() });
 }
 
-function getBowerConfig(cwd) {
-  var bowerPath = $.path.join(cwd, './bower.json');
-
-  if ($.fs.existsSync(bowerPath)) {
-    return JSON.parse($.fs.readFileSync(bowerPath));
-  }
-
-  //if the bower.json file dosen't exists
-  //look for the @bower_components dependencies in package.json
-  //from migration of `bower-away` (https://github.com/sheerun/bower-away)
-
-  // Understand why here: https://bower.io/blog/2017/how-to-migrate-away-from-bower/
-
-  var packagePath = $.path.join(cwd, './package.json');
-
-  var packageObj = JSON.parse($.fs.readFileSync(packagePath));
-
-  var dependencies = {};
-
-  Object.keys(packageObj.dependencies)
-    .map(function (dep) {
-      return dependencies[dep.replace('@bower_components/', '')] = packageObj.dependencies[dep];
-    });
-
-  return {
-    name: packageObj.name,
-    version: packageObj.version,
-    dependencies: dependencies
-  };
-}
-
 function mergeFileTypesWithDefaults(optsFileTypes) {
   var fileTypes = $._.clone(fileTypesDefault, true);
 
@@ -133,7 +101,7 @@ function mergeFileTypesWithDefaults(optsFileTypes) {
 }
 
 function findBowerDirectory(cwd) {
-  var directory = $.path.join(cwd, ($['bower-config'].read(cwd).directory || 'bower_components'));
+  var directory = 'node_modules/@bower_components';
 
   if (!$.fs.existsSync(directory)) {
     var error = new Error('Cannot find where you keep your Bower packages.');
