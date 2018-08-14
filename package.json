@@ -1,6 +1,6 @@
 {
   "name": "mm-wiredep-away",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./mm-wiredep-away.js",
   "description": "Wire Yarn dependencies to your source code based on Stephen Sawchuk's wiredep-away library.",
   "repository": "https://github.com/balaji-b-v/mm-wiredep-away",
